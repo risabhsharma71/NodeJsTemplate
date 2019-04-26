@@ -1,8 +1,8 @@
 //const {validationResult} = require('express-validation/check');
 
-const Post = require('../models/post');
+const Post = require('../models/model');
 
-
+//Fetching all data from Mongodb
 exports.getPosts = (req, res, next) => {
   Post.find()
     .then(post => {
@@ -22,8 +22,9 @@ exports.getPosts = (req, res, next) => {
     })
 };
 
+//Fetching data from mongoDb by title //
 exports.getPost = (req, res, next) => {
-  const name = req.body.title;
+  const name = req.body.title; 
   Post.find({ title: name})
   //console.log("postId--->", name)
     .then(post => {
@@ -49,7 +50,7 @@ exports.getPost = (req, res, next) => {
     })
 };
 
-
+//Posting Data in MongoDb//
 exports.createPost = (req, res, next) => {
   const title = req.body.title;
   const content = req.body.content;
