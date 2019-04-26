@@ -59,7 +59,16 @@ exports.createPost = (req, res, next) => {
     title: title,
     content: content,
      creator: {name: 'Rahul'},
+  })
+  Post.find({ title: title})
+  var data = title
+  console.log("data--->", data)
+  if (title === data){
+    res.status(401).json({
+      message: 'User Already Exist..',
+    //console.log(result)
   });
+  } else {
   post
   .save()
   .then(result => {
@@ -70,10 +79,11 @@ exports.createPost = (req, res, next) => {
     //console.log(result)
   });
 })
+  
   .catch(err => {
     console.log(err);
 
     
   });
-
+  }
 }
