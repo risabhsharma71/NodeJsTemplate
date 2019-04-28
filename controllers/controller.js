@@ -1,26 +1,45 @@
 //const {validationResult} = require('express-validation/check');
 
 const Post = require('../models/model');
-
+var data
 //Fetching all data from Mongodb
-exports.getPosts = (req, res, next) => {
-  Post.find()
-    .then(post => {
-      res
-      .status(200)
-      .json({
+// exports.getPosts = (req, res, next) => {
+//   Post.find()
+//     .then(post => {
+//       res
+//       .status(200)
+//       .json({
+//         message: 'Fetched sucessfull',
+//         posts: post
+//       })
+//     })
+//       .catch(err => {
+//         if (!err.statusCode) {
+//           err.statusCode = 500;
+//         }
+//         next(err)
+     
+//     })
+// };
+
+
+//Fetching all data from Mongodb (by Async Await)
+exports.getPosts = async (req, res, next) => {
+  try {
+  const post = await Post.find()
+      res.status(200).json({
         message: 'Fetched sucessfull',
         posts: post
       })
-    })
-      .catch(err => {
+     } catch(err) {
         if (!err.statusCode) {
           err.statusCode = 500;
         }
         next(err)
      
-    })
-};
+    }
+}
+
 
 //Fetching data from mongoDb by title //
 exports.getPost = (req, res, next) => {
@@ -60,15 +79,6 @@ exports.createPost = (req, res, next) => {
     content: content,
      creator: {name: 'Rahul'},
   })
-  Post.find({ title: title})
-  var data = title
-  console.log("data--->", data)
-  if (title === data){
-    res.status(401).json({
-      message: 'User Already Exist..',
-    //console.log(result)
-  });
-  } else {
   post
   .save()
   .then(result => {
@@ -86,4 +96,6 @@ exports.createPost = (req, res, next) => {
     
   });
   }
-}
+
+
+
