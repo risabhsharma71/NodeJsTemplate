@@ -9,6 +9,8 @@ const mongoose = require('mongoose')
 
 const feedRoutes = require('./routes/route');
 
+const registration = require('./routes/auth')
+
 const app = express();
 
 // app.use(bodyParser.urlencoded()); // x-www-form-urlencoded <form>
@@ -22,6 +24,8 @@ app.use((req, res, next) => {
 });
 
 app.use('/route', feedRoutes);
+
+app.use('/auth', registration);
 // Connect to MongoDb //
 mongoose.connect(
     'mongodb+srv://rahul_92:root@cluster0-3zopr.mongodb.net/test?retryWrites=true'
