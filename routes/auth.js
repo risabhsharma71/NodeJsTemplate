@@ -1,5 +1,5 @@
 const express = require('express');
-const { body } = require('express-validator/check');
+const { body } = require('express-validator/check'); //provided by express for server side validation
 
 const User = require('../models/user');
 const authController = require('../controllers/auth');

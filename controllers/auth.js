@@ -1,8 +1,8 @@
 const { validationResult } = require('express-validator/check');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs'); //for encrypting password
+const jwt = require('jsonwebtoken'); // authenticating sesions
 
-const User = require('../models/user');
+const User = require('../models/user'); 
 
 exports.signup = (req, res, next) => {
   const errors = validationResult(req);
