@@ -73,12 +73,14 @@ exports.getPost = (req, res, next) => {
 exports.createPost = (req, res, next) => {
   const title = req.body.title;
   const content = req.body.content;
+  console.log(title,"title")
   // Create post in db
   const post = new Post({
     title: title,
     content: content,
      creator: {name: 'Rahul'},
   })
+  console.log("post0",post)
   post
   .save()
   .then(result => {
@@ -91,9 +93,10 @@ exports.createPost = (req, res, next) => {
 })
   
   .catch(err => {
-    console.log(err);
-
-    
+    console.log("err---->",err)
+    res.status(400).json({
+      message: 'User already Exist'
+    })   
   });
   }
 
