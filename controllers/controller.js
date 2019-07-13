@@ -1,6 +1,7 @@
 //const {validationResult} = require('express-validation/check');
 
 const Post = require('../models/model');
+const isAuth = require('../middleware/is-auth');
 var data
 //Fetching all data from Mongodb
 // exports.getPosts = (req, res, next) => {

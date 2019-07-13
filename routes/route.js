@@ -2,14 +2,16 @@ const express = require('express');
 
 const feedController = require('../controllers/controller');
 
+const isAuth = require('../middleware/is-auth');
+
 const router = express.Router();
 
 // GET /feed/posts
-router.get('/posts', feedController.getPosts);
+router.get('/posts',isAuth, feedController.getPosts);
 
-router.post('/posts', feedController.createPost);
+router.post('/posts',isAuth, feedController.createPost);
 
 // POST /feed/post
-router.post('/post', feedController.getPost);
+router.post('/post',isAuth, feedController.getPost);
 
 module.exports = router;
