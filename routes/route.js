@@ -14,4 +14,7 @@ router.post('/posts',isAuth, feedController.createPost);
 // POST /feed/post
 router.post('/post',isAuth, feedController.getPost);
 
+//DELETE /feed/delete
+router.post('/delete', feedController.deletePost)
+
 module.exports = router;

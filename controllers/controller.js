@@ -103,3 +103,27 @@ exports.createPost = (req, res, next) => {
 
 
 
+  exports.deletePost = (req, res) => {
+    console.log("control comming...")
+    const title = req.body.title;
+    console.log("title----->",title)
+    Post.find({ title: title})
+     .then(post => {
+       if (!post) {
+         const error = new Error('Could not find the post.');
+         error.statusCode = 404;  
+         throw error;
+       }
+  
+       return Post.findOneAndRemove({title:title})
+     })
+     .then(result => {
+       console.log(result);
+       res.status(200).json({message: 'Deleted Post Sucessfully..'});
+     })
+     .catch(err => {
+       if (!err.statusCode) {
+         err.statusCode = 500;
+       }
+     })
+  }
